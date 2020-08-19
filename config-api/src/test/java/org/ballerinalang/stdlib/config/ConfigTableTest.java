@@ -1,4 +1,4 @@
-package org.ballerinalang.stdlib.config;
+package org.ballerinalang.stdlib.configtest;
 
 import org.ballerinalang.config.ConfigRegistry;
 import org.ballerinalang.model.values.BMap;

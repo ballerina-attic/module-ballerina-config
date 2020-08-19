@@ -16,7 +16,7 @@
  * under the License.
  */
 
-package org.ballerinalang.stdlib.configtest;
+package org.ballerinalang.stdlib.config.test;
 
 import org.ballerinalang.config.ConfigRegistry;
 import org.testng.Assert;

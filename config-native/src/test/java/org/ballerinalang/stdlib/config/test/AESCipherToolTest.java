@@ -16,7 +16,7 @@
  *  under the License.
  */
 
-package org.ballerinalang.stdlib.configtest;
+package org.ballerinalang.stdlib.config.test;
 
 import org.ballerinalang.config.cipher.AESCipherTool;
 import org.ballerinalang.config.cipher.AESCipherToolException;
