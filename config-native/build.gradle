@@ -42,7 +42,3 @@ dependencies {
     compile group: 'org.ballerinalang', name: 'toml-parser', version: "${ballerinaTomlParserVersion}"
     testCompile group: 'org.testng', name: 'testng', version: '7.3.0'
 }
-
-test {
-    useTestNG ()
-}
