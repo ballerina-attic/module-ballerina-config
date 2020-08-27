@@ -85,7 +85,8 @@ task ballerinaBuild {
             if (Os.isFamily(Os.FAMILY_WINDOWS)) {
                 commandLine 'cmd', '/c', "$distributionBinPath/ballerina.bat build -c ${moduleName}"
             } else {
-                commandLine 'sh', '-c', "$distributionBinPath/ballerina build -c ${moduleName}"
+                commandLine 'sh', '-c', "$distributionBinPath/ballerina build -c ${moduleName} --b7a.config" +
+                        ".file=src/config/tests/resources/ballerina.conf"
             }
         }
         copy {

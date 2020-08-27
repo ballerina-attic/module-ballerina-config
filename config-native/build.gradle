@@ -40,17 +40,5 @@ dependencies {
     compile group: 'org.ballerinalang', name: 'typedesc', version: "${ballerinaLangVersion}"
     compile group: 'org.ballerinalang', name: 'annotations', version: "${ballerinaLangVersion}"
     compile group: 'org.ballerinalang', name: 'toml-parser', version: "${ballerinaTomlParserVersion}"
+    testCompile group: 'org.testng', name: 'testng', version: '7.3.0'
 }
-
-
-//
-//testCompile project(':ballerina-lang:annotations')
-//testCompile project(':ballerina-runtime-api')
-//testCompile project(':ballerina-system')
-//testCompile project(':ballerina-core')
-//testCompile project(':ballerina-time')
-//testCompile project(':ballerina-reflect')
-//testCompile project(':ballerina-file')
-//testCompile project(path: ':ballerina-test-utils', configuration: 'shadow')
-//testCompile 'org.slf4j:slf4j-jdk14'
-//testCompile 'org.testng:testng'

@@ -16,7 +16,7 @@
  * under the License.
  */
 
-package org.ballerinalang.stdlib.config.util;
+package org.ballerinalang.stdlib.config.test.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
