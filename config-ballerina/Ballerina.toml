@@ -1,13 +1,13 @@
 [project]
 org-name = "ballerina"
-version = "1.0.0"
+version = "@toml.version@"
 
 [platform]
 target = "java8"
 
     [[platform.libraries]]
     artifactId = "config"
-    version = "1.0.0-SNAPSHOT"
-    path = "../config-native/build/libs/config-native-1.0.0-SNAPSHOT.jar"
+    version = "@project.version@"
+    path = "../config-native/build/libs/config-native-@project.version@.jar"
     groupId = "ballerina"
-    modules = ["config-api"]
+    modules = ["config"]
