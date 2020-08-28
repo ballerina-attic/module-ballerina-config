@@ -56,7 +56,7 @@ task copyToLib(type: Copy) {
 }
 
 def moduleName = "config"
-def moduleOrg = "ballerinax"
+def moduleOrg = "ballerina"
 def ballerinaConfigFile = new File("$project.projectDir/Ballerina.toml")
 def artifactBallerinaDocs = file("$project.projectDir/build/docs_parent/")
 def artifactCacheParent = file("$project.projectDir/build/cache_parent/")
