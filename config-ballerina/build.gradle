@@ -21,8 +21,6 @@ description = 'Ballerina - Config Ballerina Generator'
 
 configurations {
     jbalTools
-    configBallerinaBirDir
-    configBallerinaJar
     externalJars
 }
 
