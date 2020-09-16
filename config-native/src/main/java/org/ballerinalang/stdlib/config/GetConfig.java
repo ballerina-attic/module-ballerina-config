@@ -19,17 +19,16 @@
 package org.ballerinalang.stdlib.config;
 
 import org.ballerinalang.config.ConfigRegistry;
-import org.ballerinalang.jvm.BallerinaErrors;
-import org.ballerinalang.jvm.StringUtils;
+import org.ballerinalang.jvm.api.BErrorCreator;
+import org.ballerinalang.jvm.api.BStringUtils;
+import org.ballerinalang.jvm.api.BValueCreator;
+import org.ballerinalang.jvm.api.values.BArray;
+import org.ballerinalang.jvm.api.values.BMap;
+import org.ballerinalang.jvm.api.values.BString;
 import org.ballerinalang.jvm.types.BArrayType;
 import org.ballerinalang.jvm.types.BMapType;
 import org.ballerinalang.jvm.types.BTypes;
-import org.ballerinalang.jvm.values.MapValue;
-import org.ballerinalang.jvm.values.MapValueImpl;
 import org.ballerinalang.jvm.values.MappingInitialValueEntry;
-import org.ballerinalang.jvm.values.api.BArray;
-import org.ballerinalang.jvm.values.api.BString;
-import org.ballerinalang.jvm.values.api.BValueCreator;
 
 import java.util.List;
 import java.util.Map;
@@ -48,7 +47,7 @@ public class GetConfig {
         try {
             switch (type.getValue()) {
                 case "STRING":
-                    return StringUtils.fromString(configRegistry.getAsString(configKey.getValue()));
+                    return BStringUtils.fromString(configRegistry.getAsString(configKey.getValue()));
                 case "INT":
                     return configRegistry.getAsInt(configKey.getValue());
                 case "FLOAT":
@@ -56,29 +55,29 @@ public class GetConfig {
                 case "BOOLEAN":
                     return configRegistry.getAsBoolean(configKey.getValue());
                 case "MAP":
-                    return buildMapValue(configRegistry.getAsMap(configKey.getValue()));
+                    return buildBMap(configRegistry.getAsMap(configKey.getValue()));
                 case "ARRAY":
                     return buildArrayValue(configRegistry.getAsArray(configKey.getValue()));
                 default:
                     throw new IllegalStateException("invalid value type: " + type);
             }
         } catch (IllegalArgumentException e) {
-            throw BallerinaErrors.createError(StringUtils.fromString(
+            throw BErrorCreator.createError(BStringUtils.fromString(
                     "error occurred while trying to retrieve the value; " + e.getMessage()));
         }
     }
 
     @SuppressWarnings("unchecked")
-    private static MapValue<BString, Object> buildMapValue(Map<String, Object> section) {
+    private static BMap<BString, Object> buildBMap(Map<String, Object> section) {
         MappingInitialValueEntry.KeyValueEntry[] keyValues = new MappingInitialValueEntry.KeyValueEntry[section.size()];
         int i = 0;
         for (Map.Entry<String, Object> entry : section.entrySet()) {
             MappingInitialValueEntry.KeyValueEntry keyValue = new MappingInitialValueEntry.KeyValueEntry(
-                    StringUtils.fromString(entry.getKey()), getConvertedValue(entry.getValue()));
+                    BStringUtils.fromString(entry.getKey()), getConvertedValue(entry.getValue()));
             keyValues[i] = keyValue;
             i++;
         }
-        return new MapValueImpl<>(mapType, keyValues);
+        return BValueCreator.createMapValue(mapType, keyValues);
     }
 
     private static BArray buildArrayValue(List value) {
@@ -94,10 +93,10 @@ public class GetConfig {
         if (obj instanceof Long || obj instanceof Double || obj instanceof Boolean) {
             return obj;
         } else if (obj instanceof Map) {
-            return buildMapValue((Map<String, Object>) obj);
+            return buildBMap((Map<String, Object>) obj);
         } else if (obj instanceof List) {
             return buildArrayValue((List) obj);
         }
-        return StringUtils.fromString(String.valueOf(obj));
+        return BStringUtils.fromString(String.valueOf(obj));
     }
 }
