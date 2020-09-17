@@ -36,7 +36,7 @@ const ARRAY = "ARRAY";
 # + key - The key of the configuration to be retrieved
 # + defaultValue - The default value to be used in case there is no mapping for the provided key
 # + return - Configuration value mapped with the given key
-public function getAsString(@untainted string key, string defaultValue = "") returns string {
+public isolated function getAsString(@untainted string key, string defaultValue = "") returns string {
     if (contains(key)) {
         var value = get(key, STRING);
 
@@ -60,7 +60,7 @@ public function getAsString(@untainted string key, string defaultValue = "") ret
 # + key - The key of the configuration to be retrieved
 # + defaultValue - The default value to be used in case there is no mapping for the provided key
 # + return - Configuration value mapped with the given key
-public function getAsInt(@untainted string key, int defaultValue = 0) returns int {
+public isolated function getAsInt(@untainted string key, int defaultValue = 0) returns int {
     if (contains(key)) {
         var value = get(key, INT);
 
@@ -93,7 +93,7 @@ public function getAsInt(@untainted string key, int defaultValue = 0) returns in
 # + key - The key of the configuration to be retrieved
 # + defaultVal - The default value to be used in case there is no mapping for the provided key
 # + return - Configuration value mapped with the given key
-public function getAsFloat(@untainted string key, float defaultVal = 0.0) returns float {
+public isolated function getAsFloat(@untainted string key, float defaultVal = 0.0) returns float {
     if (contains(key)) {
         var value = get(key, FLOAT);
 
@@ -126,7 +126,7 @@ public function getAsFloat(@untainted string key, float defaultVal = 0.0) return
 # + key - The key of the configuration to be retrieved
 # + defaultValue - The default value to be used in case there is no mapping for the provided key
 # + return - Configuration value mapped with the given key
-public function getAsBoolean(@untainted string key, boolean defaultValue = false) returns boolean {
+public isolated function getAsBoolean(@untainted string key, boolean defaultValue = false) returns boolean {
     if (contains(key)) {
         var value = get(key, BOOLEAN);
 
@@ -153,7 +153,7 @@ public function getAsBoolean(@untainted string key, boolean defaultValue = false
 #
 # + key - The key of the configuration to be retrieved
 # + return - Configuration value mapped with the given key. If there is no mapping, an empty map will be returned
-public function getAsMap(@untainted string key) returns map<anydata> & readonly {
+public isolated function getAsMap(@untainted string key) returns map<anydata> & readonly {
     var value = get(key, MAP);
 
     if (value is map<anydata> & readonly) {
@@ -171,11 +171,11 @@ public function getAsMap(@untainted string key) returns map<anydata> & readonly 
 #
 # + key - The key of the configuration to be retrieved
 # + return - Configuration value mapped with the given key. If there is no mapping, an empty array will be returned
-public function getAsArray(@untainted string key) returns anydata[] & readonly {
+public isolated function getAsArray(@untainted string key) returns anydata[] & readonly {
     return <anydata[] & readonly>get(key, ARRAY);
 }
 
-function lookupEnvVar(string key) returns string {
+isolated function lookupEnvVar(string key) returns string {
     string convertedKey = stringutils:replace(key, ".", "_");
     return system:getEnv(convertedKey);
 }
