@@ -19,7 +19,7 @@
 package org.ballerinalang.stdlib.config;
 
 import org.ballerinalang.config.ConfigRegistry;
-import org.ballerinalang.jvm.api.values.BString;
+import io.ballerina.runtime.api.values.BString;
 
 /**
  * Extern function ballerina.config:contains.
