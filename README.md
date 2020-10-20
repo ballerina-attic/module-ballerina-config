@@ -2,7 +2,6 @@ Ballerina Config Library
 =========================
 
 [![Build](https://github.com/ballerina-platform/module-ballerina-config/workflows/Build/badge.svg)](https://github.com/ballerina-platform/module-ballerina-config/actions?query=workflow%3ABuild)
-[![Daily build](https://github.com/ballerina-platform/module-ballerina-config/workflows/Daily%20build/badge.svg?branch=master)](https://github.com/ballerina-platform/module-ballerina-config/actions?query=workflow%3A%22Daily+build)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/ballerina-platform/module-ballerina-config.svg)](https://github.com/ballerina-platform/module-ballerina-config/commits/master)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
