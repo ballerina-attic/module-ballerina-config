@@ -18,6 +18,5 @@
 
 module io.ballerina.stdlib.config {
     requires io.ballerina.runtime;
-    requires io.ballerina.config;
     exports org.ballerinalang.stdlib.config;
 }
