@@ -18,16 +18,17 @@
 
 package org.ballerinalang.stdlib.config;
 
-import io.ballerina.runtime.api.ErrorCreator;
 import io.ballerina.runtime.api.PredefinedTypes;
-import io.ballerina.runtime.api.StringUtils;
-import io.ballerina.runtime.api.ValueCreator;
+import io.ballerina.runtime.api.creators.ErrorCreator;
+import io.ballerina.runtime.api.creators.TypeCreator;
+import io.ballerina.runtime.api.creators.ValueCreator;
+import io.ballerina.runtime.api.types.ArrayType;
+import io.ballerina.runtime.api.types.MapType;
+import io.ballerina.runtime.api.utils.StringUtils;
 import io.ballerina.runtime.api.values.BArray;
 import io.ballerina.runtime.api.values.BMap;
+import io.ballerina.runtime.api.values.BMapInitialValueEntry;
 import io.ballerina.runtime.api.values.BString;
-import io.ballerina.runtime.types.BArrayType;
-import io.ballerina.runtime.types.BMapType;
-import io.ballerina.runtime.values.MappingInitialValueEntry;
 import org.ballerinalang.config.ConfigRegistry;
 
 import java.util.List;
@@ -40,8 +41,8 @@ import java.util.Map;
  */
 public class GetConfig {
     private static final ConfigRegistry configRegistry = ConfigRegistry.getInstance();
-    private static final BMapType mapType = new BMapType(PredefinedTypes.TYPE_ANYDATA, true);
-    private static final BArrayType arrayType = new BArrayType(PredefinedTypes.TYPE_ANYDATA, -1, true);
+    private static final MapType mapType = TypeCreator.createMapType(PredefinedTypes.TYPE_ANYDATA, true);
+    private static final ArrayType arrayType = TypeCreator.createArrayType(PredefinedTypes.TYPE_ANYDATA, -1, true);
 
     public static Object get(BString configKey, BString type) {
         try {
@@ -69,10 +70,10 @@ public class GetConfig {
 
     @SuppressWarnings("unchecked")
     private static BMap<BString, Object> buildBMap(Map<String, Object> section) {
-        MappingInitialValueEntry.KeyValueEntry[] keyValues = new MappingInitialValueEntry.KeyValueEntry[section.size()];
+        BMapInitialValueEntry[] keyValues = new BMapInitialValueEntry[section.size()];
         int i = 0;
         for (Map.Entry<String, Object> entry : section.entrySet()) {
-            MappingInitialValueEntry.KeyValueEntry keyValue = new MappingInitialValueEntry.KeyValueEntry(
+            BMapInitialValueEntry keyValue = ValueCreator.createKeyFieldEntry(
                     StringUtils.fromString(entry.getKey()), getConvertedValue(entry.getValue()));
             keyValues[i] = keyValue;
             i++;
