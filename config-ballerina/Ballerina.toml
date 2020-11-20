@@ -1,18 +1,24 @@
-[project]
-org-name = "ballerina"
+[package]
+org = "ballerina"
+name = "config"
 version = "@toml.version@"
+[[dependency]]
+org = "ballerina"
+name = "io"
+version = "@stdlib.io.version@"
 
-[dependencies]
-"ballerina/io" = "@stdlib.io.version@"
-"ballerina/stringutils" = "@stdlib.stringutils.version@"
-"ballerina/system" = "@stdlib.system.version@"
+[[dependency]]
+org = "ballerina"
+name = "system"
+version = "@stdlib.system.version@"
 
-[platform]
-target = "java11"
+[[dependency]]
+org = "ballerina"
+name = "stringutils"
+version = "@stdlib.stringutils.version@"
 
-    [[platform.libraries]]
-    artifactId = "config"
-    version = "@project.version@"
-    path = "../config-native/build/libs/config-native-@project.version@.jar"
-    groupId = "ballerina"
-    modules = ["config"]
+[[platform.java11.dependency]]
+path = "../config-native/build/libs/config-native-@project.version@.jar"
+groupId = "ballerina"
+artifactId = "config"
+version = "@project.version@"
