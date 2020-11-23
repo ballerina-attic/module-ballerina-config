@@ -161,21 +161,21 @@ task ballerinaBuild {
             }
 
         }
-        // TODO: enable once the doc command is fixed
+       
         // Doc creation and packing
-//        exec {
-//            workingDir project.projectDir
-//            environment "JAVA_OPTS", "-DBALLERINA_DEV_COMPILE_BALLERINA_ORG=true"
-//            if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-//                commandLine 'cmd', '/c', "$distributionBinPath/ballerina.bat doc && exit %%ERRORLEVEL%%"
-//            } else {
-//                commandLine 'sh', '-c', "$distributionBinPath/ballerina doc"
-//            }
-//        }
-//        copy {
-//            from file("$project.projectDir/target/apidocs/${packageName}")
-//            into file("$project.projectDir/build/docs_parent/docs/${packageName}")
-//        }
+        exec {
+            workingDir project.projectDir
+            environment "JAVA_OPTS", "-DBALLERINA_DEV_COMPILE_BALLERINA_ORG=true"
+            if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+                commandLine 'cmd', '/c', "$distributionBinPath/ballerina.bat doc && exit %%ERRORLEVEL%%"
+            } else {
+                commandLine 'sh', '-c', "$distributionBinPath/ballerina doc"
+            }
+        }
+        copy {
+            from file("$project.projectDir/target/apidocs/${packageName}")
+            into file("$project.projectDir/build/docs_parent/docs/${packageName}")
+        }
     }
 
     outputs.dir artifactCacheParent
