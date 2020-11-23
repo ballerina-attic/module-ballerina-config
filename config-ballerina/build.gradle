@@ -69,10 +69,10 @@ task copyStdlibs(type: Copy) {
         into("repo/balo") {
             from "${artifactExtractedPath}/balo/"
         }
-        //TODO: enable once the fix is available for loading from cache
-//        into("repo/cache") {
-//            from "${artifactExtractedPath}/cache"
-//        }
+        
+        into("repo/cache") {
+            from "${artifactExtractedPath}/cache"
+        }
     }
 }
 
