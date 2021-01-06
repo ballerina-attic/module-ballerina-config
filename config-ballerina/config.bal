@@ -17,7 +17,7 @@
 import ballerina/lang.'float as langfloat;
 import ballerina/lang.'int as langint;
 import ballerina/stringutils;
-import ballerina/system;
+import ballerina/os;
 
 type ValueType STRING|INT|FLOAT|BOOLEAN|MAP|ARRAY;
 
@@ -177,5 +177,5 @@ public isolated function getAsArray(@untainted string key) returns anydata[] & r
 
 isolated function lookupEnvVar(string key) returns string {
     string convertedKey = stringutils:replace(key, ".", "_");
-    return system:getEnv(convertedKey);
+    return os:getEnv(convertedKey);
 }
