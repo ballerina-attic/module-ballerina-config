@@ -26,7 +26,7 @@ plugins {
 ext.ballerinaLangVersion = project.ballerinaLangVersion
 ext.puppycrawlCheckstyleVersion = "8.18"
 ext.slf4jVersion = "1.7.30"
-ext.stdlibSystemVersion = project.stdlibSystemVersion
+ext.stdlibOsVersion = project.stdlibOsVersion
 ext.stdlibStringutilsVersion = project.stdlibStringutilsVersion
 ext.ballerinaTomlParserVersion = project.ballerinaTomlParserVersion
 ext.stdlibIoVersion = project.stdlibIoVersion
@@ -65,7 +65,7 @@ allprojects {
         }
 
         maven {
-            url "https://maven.pkg.github.com/ballerina-platform/module-ballerina-system"
+            url "https://maven.pkg.github.com/ballerina-platform/module-ballerina-os"
             credentials {
                 username System.getenv("packageUser")
                 password System.getenv("packagePAT")
@@ -99,7 +99,7 @@ subprojects {
     }
     dependencies {
         /* Standard libraries */
-        ballerinaStdLibs "org.ballerinalang:system-ballerina:${stdlibSystemVersion}"
+        ballerinaStdLibs "org.ballerinalang:os-ballerina:${stdlibOsVersion}"
         ballerinaStdLibs "org.ballerinalang:stringutils-ballerina:${stdlibStringutilsVersion}"
         ballerinaStdLibs "org.ballerinalang:io-ballerina:${stdlibIoVersion}"
     }
