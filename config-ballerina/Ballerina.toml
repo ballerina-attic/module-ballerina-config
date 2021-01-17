@@ -14,8 +14,8 @@ version = "@stdlib.os.version@"
 
 [[dependency]]
 org = "ballerina"
-name = "stringutils"
-version = "@stdlib.stringutils.version@"
+name = "regex"
+version = "@stdlib.regex.version@"
 
 [[platform.java11.dependency]]
 path = "../config-native/build/libs/config-native-@project.version@.jar"
