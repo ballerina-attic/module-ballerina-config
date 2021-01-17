@@ -19,7 +19,7 @@ import ballerina/test;
 @test:Config {
     groups: ["config"]
 }
-public function testGetAsString() {
+public isolated function testGetAsString() {
     string result = getAsString("\"ballerina.http.host\"");
     test:assertEquals(result, "10.100.1.205",  msg = "The result does not match");
 }
@@ -27,7 +27,7 @@ public function testGetAsString() {
 @test:Config {
     groups: ["config"]
 }
-public function testGetAsString2() {
+public isolated function testGetAsString2() {
     string result = getAsString("hello.basePath");
     test:assertEquals(result, "/hello",  msg = "The result does not match");
 }
@@ -35,7 +35,7 @@ public function testGetAsString2() {
 @test:Config {
     groups: ["config"]
 }
-public function testGetAsString3() {
+public isolated function testGetAsString3() {
     string result = getAsString("multiline.strings.txt");
     string expected = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut " +
     "labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut " +
@@ -48,7 +48,7 @@ public function testGetAsString3() {
 @test:Config {
     groups: ["config"]
 }
-public function testGetAsStringNegative() {
+public isolated function testGetAsStringNegative() {
     string result = getAsString("invalid.key");
     test:assertEquals(result, "",  msg = "The result does not match");
 }
@@ -56,7 +56,7 @@ public function testGetAsStringNegative() {
 @test:Config {
     groups: ["config"]
 }
-public function testGetAsInt() {
+public isolated function testGetAsInt() {
     int result = getAsInt("http1.port");
     test:assertEquals(result, 8085,  msg = "The result does not match");
 }
@@ -64,7 +64,7 @@ public function testGetAsInt() {
 @test:Config {
     groups: ["config"]
 }
-public function testGetAsInt2() {
+public isolated function testGetAsInt2() {
     int result = getAsInt("http3.port");
     test:assertEquals(result, 7070,  msg = "The result does not match");
 }
@@ -72,7 +72,7 @@ public function testGetAsInt2() {
 @test:Config {
     groups: ["config"]
 }
-public function testGetAsInt3() {
+public isolated function testGetAsInt3() {
     int result = getAsInt("http1.request_limit");
     test:assertEquals(result, 50,  msg = "The result does not match");
 }
@@ -80,7 +80,7 @@ public function testGetAsInt3() {
 @test:Config {
     groups: ["config"]
 }
-public function testGetAsIntNegative() {
+public isolated function testGetAsIntNegative() {
     int result = getAsInt("invalid.key");
     test:assertEquals(result, 0,  msg = "The result does not match");
 }
@@ -88,7 +88,7 @@ public function testGetAsIntNegative() {
 @test:Config {
     groups: ["config"]
 }
-public function testGetAsFloat() {
+public isolated function testGetAsFloat() {
     float result = getAsFloat("http1.eviction_factor");
     test:assertEquals(result, 0.3455,  msg = "The result does not match");
 }
@@ -96,7 +96,7 @@ public function testGetAsFloat() {
 @test:Config {
     groups: ["config"]
 }
-public function testGetAsFloatNegative() {
+public isolated function testGetAsFloatNegative() {
     float result = getAsFloat("invalid.key");
     test:assertEquals(result, 0.0,  msg = "The result does not match");
 }
@@ -104,7 +104,7 @@ public function testGetAsFloatNegative() {
 @test:Config {
     groups: ["config"]
 }
-public function testGetAsBoolean() {
+public isolated function testGetAsBoolean() {
     boolean result = getAsBoolean("http1.caching_enabled");
     test:assertEquals(result, true,  msg = "The result does not match");
 }
@@ -112,7 +112,7 @@ public function testGetAsBoolean() {
 @test:Config {
     groups: ["config"]
 }
-public function testGetAsBooleanNegative() {
+public isolated function testGetAsBooleanNegative() {
     boolean result = getAsBoolean("invalid.$key");
     test:assertEquals(result, false,  msg = "The result does not match");
 }
@@ -120,7 +120,7 @@ public function testGetAsBooleanNegative() {
 @test:Config {
     groups: ["config"]
 }
-public function testGetAsArray() {
+public isolated function testGetAsArray() {
     var keyArray = getAsArray("listenerConfig.keyStore.ports");
     int[]|error ports = keyArray.cloneWithType(IntArray);
     if (ports is int[]) {
@@ -135,7 +135,7 @@ public function testGetAsArray() {
 @test:Config {
     groups: ["config"]
 }
-public function testGetAsArray2() {
+public isolated function testGetAsArray2() {
     string[] paths = <string[] & readonly>getAsArray("listenerConfig.keyStore.paths");
     test:assertEquals(paths[0], "/etc", msg = "The result does not match.");
     test:assertEquals(paths[1], "/tmp", msg = "The result does not match.");
@@ -145,7 +145,7 @@ public function testGetAsArray2() {
 @test:Config {
     groups: ["config"]
 }
-public function testGetAsStringMap() {
+public isolated function testGetAsStringMap() {
     map<string> resultMap = <map<string> & readonly>getAsMap("employee");
     test:assertEquals(resultMap["name"], "John", msg = "The result does not match.");
     test:assertEquals(resultMap["city"], "Sydney", msg = "The result does not match.");
